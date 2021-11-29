@@ -1,13 +1,50 @@
-# Example of a scalable Flask API
+# A Sample app that takes in a json object model and genearte necessary code for ORM 
 
 ![The site](docs/site.png)
 
-A sample project showing how to build a scalable, maintainable, modular Flask API with a heavy emphasis on testing.
+The project was forked from https://github.com/apryor6/flask_api_example 
 
-_This is an example project using the structure proposed in [this blog post](http://alanpryorjr.com/2019-05-20-flask-api-example/)._
+Using json to describle datamodal, and automatically geneate sqlalchemy code . 
 
+ie : if we have a user modal :
+{
+    "classname":"User",
+    "columns":[
+        {
+            "name": "id"
+            , "type": "Integer()"
+            , "descr" :  ", primary_key=True"
+        },
+        {
+            "name": "email"
+            ,"type": "String(255)"
+        },
+        {
+            "name": "firstname"
+            ,"type": "String(255)"
+        },
+        {
+            "name": "lastname"
+            ,"type": "String(255)"
+        },
+        {
+            "name": "phone"
+            ,"type": "String(16)"
+        },
+        {
+            "name":"company_id"
+            ,"type": "Integer()"
+            ,"descr": ", ForeignKey('company.id')"
+        }
+    ]
+}
+
+## Buiding the app
+docker build -f  Dockerfile.dev -t grwang/flask_orm  ./
 
 ## Running the app
+
+
 
 Preferably, first create a virtualenv and activate it, perhaps with the following command:
 
