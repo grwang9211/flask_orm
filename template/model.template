@@ -1,0 +1,19 @@
+from sqlalchemy import Integer, Column, String, ForeignKey
+from app import db  # noqa
+from .interface import {{ classname }}Interface
+
+
+class {{ classname }}(db.Model):  # type: ignore
+
+    """{{ classname }}"""
+    
+    __tablename__ = "{{ tablename }}"
+
+    {% for column in columns -%}
+        {{ column.name }} = Column( {{ column.type }} {{ column.descr }} )
+    {% endfor %}
+
+    def update(self, changes: {{ classname }}Interface):
+        for key, val in changes.items():
+            setattr(self, key, val)
+        return self

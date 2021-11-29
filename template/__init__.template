@@ -1,0 +1,10 @@
+from .model import {{ classname }}  # noqa
+from .schema import {{ classname }}Schema  # noqa
+
+BASE_ROUTE = "{{ classname }}"
+
+
+def register_routes(api, app, root="api"):
+    from .controller import api as {{ classname }}_api
+
+    api.add_namespace({{ classname }}_api, path=f"/{root}/{BASE_ROUTE}")

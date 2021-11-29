@@ -1,0 +1,56 @@
+from flask import request
+from flask_accepts import accepts, responds
+from flask_restx import Namespace, Resource
+from flask.wrappers import Response
+from typing import List
+
+from .schema import {{ classname }}Schema
+from .service import {{ classname }}Service
+from .model import {{ classname }}
+from .interface import {{ classname }}Interface
+
+api = Namespace("{{ classname }}", description="Single namespace, single entity")  # noqa
+
+
+@api.route("/")
+class {{ classname }}Resource(Resource):
+    """{{ classname }}s"""
+
+    @responds(schema={{ classname }}Schema, many=True)
+    def get(self) -> List[{{ classname }}]:
+        """Get all {{ classname }}s"""
+
+        return {{ classname }}Service.get_all()
+
+    @accepts(schema={{ classname }}Schema, api=api)
+    @responds(schema={{ classname }}Schema)
+    def post(self) -> {{ classname }}:
+        """Create a Single {{ classname }}"""
+
+        return {{ classname }}Service.create(request.parsed_obj)
+
+
+@api.route("/<int:Id>")
+@api.param("Id", "{{ classname }} database ID")
+class IdResource(Resource):
+    @responds(schema={{ classname }}Schema)
+    def get(self, Id: int) -> {{ classname }}:
+        """Get Single {{ classname }}"""
+
+        return {{ classname }}Service.get_by_id(Id)
+
+    def delete(self, Id: int) -> Response:
+        """Delete Single {{ classname }}"""
+        from flask import jsonify
+
+        id = {{ classname }}Service.delete_by_id(Id)
+        return jsonify(dict(status="Success", id=id))
+
+    @accepts(schema={{ classname }}Schema, api=api)
+    @responds(schema={{ classname }}Schema)
+    def put(self, Id: int) -> {{ classname }}:
+        """Update Single {{ classname }}"""
+
+        changes: {{ classname }}Interface = request.parsed_obj
+        {{ classname }} = {{ classname }}Service.get_by_id(Id)
+        return {{ classname }}Service.update({{ classname }}, changes)

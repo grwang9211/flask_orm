@@ -1,0 +1,9 @@
+from marshmallow import fields, Schema
+
+
+class {{ classname }}Schema(Schema):
+    """{{ classname }} schema"""
+
+    {% for column in columns -%}
+        {{ column.name }} = fields.{{ column.schematype }}(attribute="{{ column.name }}")
+    {% endfor %}    

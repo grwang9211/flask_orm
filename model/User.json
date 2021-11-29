@@ -1,0 +1,31 @@
+{
+    "classname":"User",
+    "columns":[
+        {
+            "name": "id"
+            , "type": "Integer()"
+            , "descr" :  ", primary_key=True"
+        },
+        {
+            "name": "email"
+            ,"type": "String(255)"
+        },
+        {
+            "name": "firstname"
+            ,"type": "String(255)"
+        },
+        {
+            "name": "lastname"
+            ,"type": "String(255)"
+        },
+        {
+            "name": "phone"
+            ,"type": "String(16)"
+        },
+        {
+            "name":"company_id"
+            ,"type": "Integer()"
+            ,"descr": ", ForeignKey('company.id')"
+        }
+    ]
+}

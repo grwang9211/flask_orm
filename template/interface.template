@@ -1,0 +1,10 @@
+from mypy_extensions import TypedDict
+
+
+class {{ classname }}Interface(TypedDict, total=False):
+    {% for column in columns -%}
+        {{ column.name }}: {{ column.pytype }} 
+    {% endfor %}    
+
+    
+

@@ -1,0 +1,26 @@
+{
+    "classname":"Company",
+    "columns":[
+        {
+            "name": "id"
+            , "type": "Integer()"
+            , "descr" :  ", primary_key=True"
+        },
+        {
+            "name": "name"
+            ,"type": "String(32)"
+        },
+        {
+            "name": "phone"
+            ,"type": "String(16)"
+        },
+        {
+            "name": "fax"
+            ,"type": "String(16)"
+        },
+        {
+            "name": "description"
+            ,"type": "String(255)"
+        }
+    ]
+}

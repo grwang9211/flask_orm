@@ -1,0 +1,5 @@
+docker run -it --name flaskdev --rm --volume $(pwd):/usr/src/app --net=host  gw98/flaskdev:latest bash
+docker run -it --name flaskdev --rm --volume $(pwd):/usr/src/app --net=host -p 8080:8080  gw98/flaskdev:latest bash
+docker exec  -it 2ec06bf7e3d8     bash
+
+curl -X GET "http://localhost:8080/api/User/" -H "accept: application/json"

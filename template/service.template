@@ -1,0 +1,37 @@
+from app import db
+from typing import List
+from .model import {{ classname }}
+from .interface import {{ classname }}Interface
+
+class {{ classname }}Service :
+    @staticmethod
+    def get_all() -> List[{{ classname }}]:
+        return {{ classname }}.query.all()
+
+    @staticmethod
+    def get_by_id(id: int) -> {{ classname }}:
+        return {{ classname }}.query.get(id)
+
+    @staticmethod
+    def update({{ classname }}: {{ classname }}, {{ classname }}_change_updates: {{ classname }}Interface) -> {{ classname }}:
+        {{ classname }}.update({{ classname }}_change_updates)
+        db.session.commit()
+        return {{ classname }}
+
+    @staticmethod
+    def delete_by_id(id: int) -> List[int]:
+        {{ classname }} = {{ classname }}.query.filter({{ classname }}.id == id).first()
+        if not {{ classname }}:
+            return []
+        db.session.delete({{ classname }})
+        db.session.commit()
+        return [id]
+
+    @staticmethod
+    def create(new_attrs: {{ classname }}Interface) -> {{ classname }}:
+        new_{{ classname }} = {{ classname }}(name=new_attrs["name"], purpose=new_attrs["purpose"])
+
+        db.session.add(new_{{ classname }})
+        db.session.commit()
+
+        return new_{{ classname }}
