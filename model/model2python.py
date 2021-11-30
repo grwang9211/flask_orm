@@ -29,12 +29,25 @@ def load_model ( kclass ) :
 
     return data 
 
+
+
 class  GenCodeCommand ( Command ) : 
     def run(self):
+        routesmodel = {'tables': list()}
+        for kclass in classes : 
+            routesmodel['tables'].append( {'tablename':kclass.lower()})
+        env = Environment(loader=FileSystemLoader("template"))
+        tmfile = "routes.template"
+        template = env.get_template(tmfile)
+        pyfile=open("app/routes.py" , "w")
+        pyfile.write (template.render(routesmodel))
+        pyfile.close()
+
         for kclass in classes :
             dirname=kclass.lower() 
+            os.mkdir("app/{}".format(dirname))
             model = load_model ( kclass )
-            templatedir = 'template'
+            templatedir = 'template/object'
             template_loader = FileSystemLoader(templatedir)
             env = Environment(loader=template_loader)
             templates = os.listdir (templatedir)
