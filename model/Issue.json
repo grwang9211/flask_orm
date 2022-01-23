@@ -1,0 +1,30 @@
+{
+    "classname":"Issue",
+    "columns":[
+        {
+            "name": "id"
+            , "type": "Integer()"
+            , "descr" :  ", primary_key=True"
+        },
+        {
+            "name": "status"
+            ,"type" : "Integer()"
+        },
+        {
+            "name": "subject"
+            ,"type": "String(255)"
+        },
+        {
+            "name": "description"
+            ,"type": "String(1024)"
+        },
+        {
+            "name": "reported_by"
+            ,"type": "Integer()"
+        },
+        {
+            "name": "assigned_to"
+            ,"type": "Integer"
+        }
+    ]
+}

@@ -1,0 +1,14 @@
+{
+    "classname":"Status",
+    "columns":[
+        {
+            "name": "id"
+            , "type": "Integer()"
+            , "descr" :  ", primary_key=True"
+        },
+        {
+            "name": "description"
+            ,"type": "String(255)"
+        }
+    ]
+}

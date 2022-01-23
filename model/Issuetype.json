@@ -1,5 +1,5 @@
 {
-    "classname":"User",
+    "classname":"IssuerType",
     "columns":[
         {
             "name": "id"

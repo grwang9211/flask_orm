@@ -1,0 +1,20 @@
+{
+    "classname" : "videoMgr"
+    ,"columns" : [
+        {
+            "name": "id"
+            , "type": "Integer()"
+            , "descr" : ", primary_key = True" 
+        }
+        ,
+        {
+            "name": "origin_url" 
+            ,"type": "String(1024)" 
+        }
+        ,
+        {
+            "name": "status"
+            ,"type": "Integer()"
+        }
+    ]
+}

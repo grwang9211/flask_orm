@@ -17,7 +17,7 @@ def trans_schematype( dbType ) :
         return "String"
     return 'na'
 
-classes = ["User", "Company"] 
+classes = ["User", "Company", "Issue", "Status", "Issuetype", "VideoMgr"] 
 def load_model ( kclass ) :
     f = open ( "model/{}.json".format(kclass) )
     data = json.load(f) 
@@ -45,6 +45,7 @@ class  GenCodeCommand ( Command ) :
 
         for kclass in classes :
             dirname=kclass.lower() 
+            print ("Generating code for {}".format(kclass))
             os.mkdir("app/{}".format(dirname))
             model = load_model ( kclass )
             templatedir = 'template/object'

@@ -29,7 +29,11 @@ class {{ classname }}Service :
 
     @staticmethod
     def create(new_attrs: {{ classname }}Interface) -> {{ classname }}:
-        new_{{ classname }} = {{ classname }}(name=new_attrs["name"], purpose=new_attrs["purpose"])
+        new_{{ classname }} = {{ classname }}(
+            {% for column in columns -%}
+                {{ column.name }}=new_attrs["{{column.name}}"] ,
+            {% endfor %}               
+        )
 
         db.session.add(new_{{ classname }})
         db.session.commit()
