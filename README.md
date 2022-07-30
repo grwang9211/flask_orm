@@ -43,7 +43,8 @@ ie : if we have a user modal :
 docker build -f  Dockerfile.dev -t grwang/flask_orm  ./
 
 ## Running the app
-
+run docker 
+docker run -it --name flaskdev --rm --volume $(pwd):/usr/src/app -p 8080:8080  grwang/flask_orm:latest bash
 
 
 Preferably, first create a virtualenv and activate it, perhaps with the following command:
